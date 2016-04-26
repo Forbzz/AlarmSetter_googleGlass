@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Sleeptime</string>
+    <string name="title_activity_main">When you\'ll wake up</string>
+    <string name="hello_world">Hello world!</string>
+</resources>
