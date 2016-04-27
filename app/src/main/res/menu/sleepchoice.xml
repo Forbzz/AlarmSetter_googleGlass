@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/needToWakeUp"
+        android:title="Wake Up At" />
+    <item android:id="@+id/goToBedNow"
+        android:title="Sleep Now" />
+
+</menu>

@@ -4,7 +4,9 @@
 
 
     <uses-permission android:name="com.google.android.glass.permission.DEVELOPMENT" />
+    <uses-permission android:name="com.google.android.glass.permission.INTERNET"/>
     <application
+
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -22,6 +24,20 @@
                 android:name="com.google.android.glass.VoiceTrigger"
                 android:resource="@xml/voice_trigger" />
         </activity>
+
+        <activity
+            android:name=".SleepNowActivity"
+            android:immersive="true"
+            android:icon="@drawable/ic_glass_logo"
+            android:label="@string/title_activitySleepNow"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.nicolasta.sleeptime.MainActivity" />
+        </activity>
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
     </application>
 
 </manifest>
