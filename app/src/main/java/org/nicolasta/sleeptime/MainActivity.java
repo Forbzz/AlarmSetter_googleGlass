@@ -173,13 +173,16 @@ public class MainActivity extends Activity {
     public boolean onMenuItemSelected(int featureId, MenuItem item) {
         if (featureId == WindowUtils.FEATURE_VOICE_COMMANDS || featureId == Window.FEATURE_OPTIONS_PANEL) {
             switch (item.getItemId()) {
-                case R.id.goToBedNow:
-                    goToBedNow();
-                    break;
+
 
                 case R.id.needToWakeUp:
                     needToWakeUpAt();
                     break;
+
+                case R.id.goToBedNow:
+                    goToBedNow();
+                    break;
+
 
             }
             return true;
