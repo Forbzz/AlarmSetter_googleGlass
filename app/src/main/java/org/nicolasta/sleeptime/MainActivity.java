@@ -77,6 +77,8 @@ public class MainActivity extends Activity {
                 return AdapterView.INVALID_POSITION;
             }
         });
+
+
         // Handle the TAP event.
         mCardScroller.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -161,11 +163,11 @@ public class MainActivity extends Activity {
     }
     @Override
     public boolean onCreatePanelMenu(int featureId, Menu menu) {
-        if (featureId == WindowUtils.FEATURE_VOICE_COMMANDS || featureId == Window.FEATURE_OPTIONS_PANEL) {
+       if (featureId == WindowUtils.FEATURE_VOICE_COMMANDS || featureId == Window.FEATURE_OPTIONS_PANEL) {
             getMenuInflater().inflate(R.menu.sleepchoice, menu);
             return true;
         }
-        return super.onCreatePanelMenu(featureId, menu);
+       return super.onCreatePanelMenu(featureId, menu);
     }
 
 
@@ -238,13 +240,13 @@ public class MainActivity extends Activity {
 
     public void goToBedNow(){
         Intent sleepNow = new Intent(this, SleepNowActivity.class);
-     //   resultsIntent.putExtra(goToBedNow().SEARCH, platform);
+     //
         startActivity(sleepNow);
     }
 
     public void needToWakeUpAt(){
         Intent whenToSleep = new Intent(this, WhenToSleepActivity.class);
-        //   resultsIntent.putExtra(goToBedNow().SEARCH, platform);
+        //
         startActivity(whenToSleep);
 
     }

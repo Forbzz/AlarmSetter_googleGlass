@@ -2,15 +2,10 @@ package org.nicolasta.sleeptime;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
-import android.widget.Toast;
 
 import com.google.android.glass.touchpad.Gesture;
 import com.google.android.glass.touchpad.GestureDetector;
@@ -19,22 +14,23 @@ import com.google.android.glass.widget.CardBuilder;
 import com.google.android.glass.widget.CardScrollView;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 import adapters.alarmAdapter;
 
 /**
- * Created by Nicolas on 27/04/2016.
+ * Created by Nicolas TA on 29/04/2016.
  */
-public class SleepNowActivity extends Activity{
+public class WhenToSleepResultActivity extends Activity {
+
+
+
 
     private CardScrollView mCardScroller;
     private List<CardBuilder> mCards;
     private GestureDetector mGestureDetector;
 
 
-    @Override
     protected void onCreate(Bundle bundle) {
         super.onCreate(bundle);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
@@ -43,8 +39,8 @@ public class SleepNowActivity extends Activity{
         mCards = new ArrayList<CardBuilder>();
 
 
-System.out.println("Launch FindAlarm()");
-        findAlarm();
+
+        resultView();
         mCardScroller.setAdapter(new alarmAdapter(mCards));
 
         // Handle the TAP event.
@@ -105,51 +101,6 @@ System.out.println("Launch FindAlarm()");
         return gestureDetector;
     }
 
-
-    @Override
-    public boolean onCreatePanelMenu(int featureId, Menu menu) {
-        if (featureId == WindowUtils.FEATURE_VOICE_COMMANDS || featureId == Window.FEATURE_OPTIONS_PANEL) {
-            getMenuInflater().inflate(R.menu.setalarmchoice, menu);
-            return true;
-        }
-        return super.onCreatePanelMenu(featureId, menu);
-    }
-
-
-    @Override
-    public boolean onMenuItemSelected(int featureId, MenuItem item) {
-        if (featureId == WindowUtils.FEATURE_VOICE_COMMANDS || featureId == Window.FEATURE_OPTIONS_PANEL) {
-            switch (item.getItemId()) {
-
-
-                case R.id.setalarm:
-
-                    Toast.makeText(getApplicationContext(),
-                            "Alarm set!", Toast.LENGTH_LONG).show();
-                    previousActivity();
-
-                    break;
-
-
-                case R.id.cancel:
-                    previousActivity();
-                    break;
-
-
-                case R.id.back:
-                    finish();
-
-                    break;
-
-
-
-
-            }
-            return true;
-        }
-        return super.onMenuItemSelected(featureId, item);
-    }
-
     @Override
     protected void onResume() {
         super.onResume();
@@ -161,66 +112,89 @@ System.out.println("Launch FindAlarm()");
         mCardScroller.deactivate();
         super.onPause();
     }
-    private void findAlarm(){
-        Calendar c = Calendar.getInstance();
-        int hour = c.get(Calendar.HOUR_OF_DAY);
-        int minute = c.get(Calendar.MINUTE);
 
+    private void resultView() {
+    System.out.println("Rentré dans resultView");
+        int hour = Integer.parseInt(WhenToSleepActivity.hourWake);
+        int minute = Integer.parseInt(MinuteActivity.minuteWake);
+        String am_pm = AmOrPmActivity.am_PmWake;
+
+        int wakeHour =hour;
+        int wakeMinute = minute;
+        String wakeDayTime= am_pm;
         int displayedHour;
         int displayedMinute;
-        int addedHour=0;
-        String dayTime= "AM";
-        hour+=3;
-        minute+= 14;
-        for (int i=3; i<=8; i++){
+        int addedHour;
+
+        hour -= 9;
+
+        if(am_pm == "PM"){
+            hour += 12;
+        }
+
+        if (minute < 14) {
+            minute = 60 - (14 - minute);
+            hour--;
+
+        } else {
+            minute -= 14;
+        }
+
+        for (int i = 0; i <= 4; i++) {
+            System.out.println("Rentré dans resultView");
+
+            displayedHour = hour;
+            displayedMinute = minute;
+
+            if (minute >= 60) {
+
+                addedHour = minute / 60;
+                displayedMinute = minute % 60;
+                displayedHour += addedHour;
+                addedHour = 0;
+
+            }
+            if (displayedHour > 12 && displayedHour < 24) {
+
+
+                displayedHour = displayedHour % 12;
+                am_pm = "PM";
+
+            }
+            if (displayedHour >= 24) {
+
+                displayedHour = displayedHour % 12;
+                am_pm = "AM";
+
+            }
+
+            if (displayedHour <= 0 && displayedHour <= 12) {
+
+                am_pm = "AM";
+
+            }
+
+            if (displayedHour <0){
+System.out.println("Displayed hour < 0 =" + displayedHour + am_pm);
+                displayedHour = displayedHour % 12;
+                displayedHour = 12 + displayedHour;
+                am_pm ="PM";
+                System.out.println("after transformation  =" + displayedHour + am_pm);
+            }
+
+
+            System.out.println("If you wake up at" + wakeHour+":"+wakeMinute+" "+wakeDayTime+", you should go to bed at:"+ displayedHour + ":" + displayedMinute + " " + am_pm+ "\n      Sleep's cycle: " + (6-i));
+            CardBuilder card = new CardBuilder(this, CardBuilder.Layout.TEXT)
+                    .setText("If you wake up at" + wakeHour+":"+wakeMinute+" "+wakeDayTime+", you should go to bed at:\n      " + displayedHour + ":" + displayedMinute + " " + am_pm + "\n      Sleep's cycle: " + (6-i))
+
+                    .setFootnote("A good night: 5-6 cycles     swipe →: cycle--");
+
             hour++;
             minute += 30;
 
-            displayedHour= hour;
-            displayedMinute = minute;
-
-            if(minute >= 60){
-
-                addedHour = minute/60;
-                displayedMinute=  minute%60;
-                displayedHour += addedHour;
-                addedHour=0;
-
-            }
-                if(displayedHour >12 && displayedHour < 24){
-
-
-                    displayedHour= displayedHour % 12;
-                    dayTime = "PM";
-
-                }
-                if(displayedHour>= 24){
-
-                    displayedHour = displayedHour% 12;
-                    dayTime = "AM";
-
-                }
-
-
-
-
-
-            System.out.println("If you sleep now, you should set up the alarm at "+ displayedHour +":"+displayedMinute+" "+dayTime);
-            CardBuilder card = new CardBuilder(this, CardBuilder.Layout.TEXT)
-                    .setText("If you head to bed right now, try to wake up at:\n      "+ displayedHour +":"+displayedMinute+" "+dayTime+ "\n      Sleep's cycle: "+ i)
-
-                    .setFootnote("A good night: 5-6 cycles     swipe →: cycle++");
-
             mCards.add(card);
         }
-        mCardScroller.setSelection(0);
-    }
-
-    private void previousActivity(){
-
-
-        Intent previousAct = new Intent(this, SleepNowActivity.class);
-        startActivity(previousAct);
+        mCardScroller.setSelection(6);
     }
 
 }

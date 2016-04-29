@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/hour1"
+        android:title="1" />
+    <item android:id="@+id/hour2"
+        android:title="2" />
+    <item android:id="@+id/hour3"
+        android:title="3" />
+    <item android:id="@+id/hour4"
+        android:title="4" />
+    <item android:id="@+id/hour5"
+        android:title="5" />
+    <item android:id="@+id/hour6"
+        android:title="6" />
+    <item android:id="@+id/hour7"
+        android:title="7" />
+    <item android:id="@+id/hour8"
+        android:title="8" />
+    <item android:id="@+id/hour9"
+        android:title="9" />
+    <item android:id="@+id/hour10"
+        android:title="10" />
+    <item android:id="@+id/hour11"
+        android:title="11" />
+    <item android:id="@+id/hour12"
+        android:title="12" />
+    <item android:id="@+id/hourback"
+        android:title="back" />
+
+
+
+</menu>

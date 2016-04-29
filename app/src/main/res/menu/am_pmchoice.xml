@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+
+    <item android:id="@+id/am"
+        android:title="a.m" />
+
+    <item android:id="@+id/pm"
+        android:title="p.m" />
+
+
+    <item android:id="@+id/ampmback"
+        android:title="back" />
+</menu>

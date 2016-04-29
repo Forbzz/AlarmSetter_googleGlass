@@ -35,6 +35,51 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="org.nicolasta.sleeptime.MainActivity" />
         </activity>
+
+        <activity
+            android:name=".WhenToSleepActivity"
+            android:immersive="true"
+            android:icon="@drawable/ic_glass_logo"
+            android:label="@string/title_activityWhenToSleep"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.nicolasta.sleeptime.MainActivity" />
+        </activity>
+
+        <activity
+            android:name=".MinuteActivity"
+            android:immersive="true"
+            android:icon="@drawable/ic_glass_logo"
+            android:parentActivityName=".WhenToSleepActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.nicolasta.sleeptime.WhenToSleepActivity" />
+        </activity>
+
+
+        <activity
+            android:name=".AmOrPmActivity"
+            android:immersive="true"
+            android:icon="@drawable/ic_glass_logo"
+            android:parentActivityName=".MinuteActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.nicolasta.sleeptime.MinuteActivity" />
+        </activity>
+
+
+
+        <activity
+            android:name=".WhenToSleepResultActivity"
+            android:immersive="true"
+            android:icon="@drawable/ic_glass_logo"
+            android:parentActivityName=".AmOrPmActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.nicolasta.sleeptime.AmOrPmActivity" />
+        </activity>
+
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />

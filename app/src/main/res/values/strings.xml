@@ -3,4 +3,5 @@
     <string name="title_activity_main">When you\'ll wake up</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activitySleepNow">Wanna sleep now</string>
+    <string name="title_activityWhenToSleep">Figure out when it\'s best to sleep</string>
 </resources>

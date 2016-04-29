@@ -19,16 +19,17 @@ import com.google.android.glass.widget.CardBuilder;
 import com.google.android.glass.widget.CardScrollAdapter;
 import com.google.android.glass.widget.CardScrollView;
 
-import java.util.List;
-
 /**
  * Created by Nicolas on 27/04/2016.
  */
-public class WhenToSleepActivity extends Activity {
+public class MinuteActivity extends Activity {
 
-    public static String hourWake="00";
+
+
+    public static String minuteWake="00";
+
     private CardScrollView mCardScroller;
-    private List<CardBuilder> mCards;
+
     private View mView;
     protected void onCreate(Bundle bundle) {
         super.onCreate(bundle);
@@ -85,12 +86,14 @@ public class WhenToSleepActivity extends Activity {
         setContentView(mCardScroller);
 
 
+
     }
+
 
     @Override
     public boolean onCreatePanelMenu(int featureId, Menu menu) {
         if (featureId == WindowUtils.FEATURE_VOICE_COMMANDS || featureId == Window.FEATURE_OPTIONS_PANEL) {
-            getMenuInflater().inflate(R.menu.hourchoice, menu);
+            getMenuInflater().inflate(R.menu.minutechoice, menu);
             return true;
         }
         return super.onCreatePanelMenu(featureId, menu);
@@ -103,78 +106,30 @@ public class WhenToSleepActivity extends Activity {
             switch (item.getItemId()) {
 
 
-                case R.id.hour1:
-                    hourWake="1";
+                case R.id.minute0:
+                    minuteWake="00";
                     nextActivity();
                     break;
 
 
-                case R.id.hour2:
-                    hourWake="2";
+                case R.id.minute15:
+                    minuteWake="15";
                     nextActivity();
                     break;
 
 
-                case R.id.hour3:
-                    hourWake="3";
+                case R.id.minute30:
+                    minuteWake="30";
+                    nextActivity();
+                    break;
+
+                case R.id.minute45:
+                    minuteWake="45";
                     nextActivity();
                     break;
 
 
-                case R.id.hour4:
-                    hourWake="4";
-                    nextActivity();
-                    break;
-
-
-                case R.id.hour5:
-                    hourWake="5";
-                    nextActivity();
-                    break;
-
-
-                case R.id.hour6:
-                    hourWake="6";
-                    nextActivity();
-                    break;
-
-
-                case R.id.hour7:
-                    hourWake="7";
-                    nextActivity();
-                    break;
-
-
-                case R.id.hour8:
-                    hourWake="8";
-                    nextActivity();
-                    break;
-
-
-                case R.id.hour9:
-                    hourWake="9";
-                    nextActivity();
-                    break;
-
-
-                case R.id.hour10:
-                    hourWake="10";
-                    nextActivity();
-                    break;
-
-
-                case R.id.hour11:
-                    hourWake="11";
-                    nextActivity();
-                    break;
-
-
-                case R.id.hour12:
-                    hourWake="12";
-                    nextActivity();
-                    break;
-
-                case R.id.hourback:
+                case R.id.minuteback:
                     previousActivity();
                     break;
 
@@ -207,7 +162,7 @@ public class WhenToSleepActivity extends Activity {
 
 
         CardBuilder card = new CardBuilder(this, CardBuilder.Layout.TEXT)
-                .setText(" What hour shall you wake up?");
+                .setText(WhenToSleepActivity.hourWake+":??\nHow many minutes?");
 
 
         return card.getView();
@@ -215,18 +170,17 @@ public class WhenToSleepActivity extends Activity {
 
     }
 
-
     private void nextActivity(){
 
 
-        Intent minuteAct = new Intent(this, MinuteActivity.class);
-        startActivity(minuteAct);
+        Intent am_pmAct = new Intent(this, AmOrPmActivity.class);
+        startActivity(am_pmAct);
     }
 
     private void previousActivity(){
 
 
-        Intent mainAct = new Intent(this, MainActivity.class);
-        startActivity(mainAct);
+        Intent hourAct = new Intent(this, WhenToSleepActivity.class);
+        startActivity(hourAct);
     }
 }

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/goToBedNow"
-        android:title="I sleep Now" />
+        android:title="When should I wake up?" />
     <item android:id="@+id/needToWakeUp"
-        android:title="When to sleep? (not ready)" />
+        android:title="When should I sleep?" />
 
 
 </menu>

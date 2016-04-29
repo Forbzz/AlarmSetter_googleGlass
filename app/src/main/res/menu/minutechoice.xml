@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/minute0"
+        android:title="0" />
+
+    <item android:id="@+id/minute15"
+        android:title="15" />
+
+    <item android:id="@+id/minute30"
+        android:title="30" />
+
+    <item android:id="@+id/minute45"
+        android:title="45" />
+
+    <item android:id="@+id/minuteback"
+        android:title="back" />
+
+
+
+
+
+
+</menu>
